@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -11,13 +11,14 @@ export class AppComponent {
   
   ngOnInit() {
     this.myForm = new FormGroup ({
-      name: new FormControl(),
-      email: new FormControl(),
-      password: new FormControl()
+      name: new FormControl('', [Validators.required, Validators.minLength(4)]),
+      email: new FormControl(''),
+      password: new FormControl('')
     });
   }
 
   submit() {
-    console.log(this.myForm);
+    console.log(this.myForm.valid);
+    
   }
 }
